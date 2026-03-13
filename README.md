@@ -6,14 +6,15 @@ Công cụ sử dụng: Power BI
 ---
 ## 📑 Mục lục
 1. 📌 Ngữ cảnh
-2. 📂 Giải pháp
-3. 🧠 Xác định dữ liệu đầu vào
-4. 📊Triển khai
+2. 💡 Giải pháp
+3. 🔎 Xác định dữ liệu đầu vào
+4. ⚙️ Triển khai
+5. 🎯 Kết quả đạt được
 ---
 
 ## 📌 Ngữ cảnh
 Ban lãnh đạo công ty F68 Finance có nhu cầu theo dõi hiệu quả kinh doanh nhằm đánh giá tổng thể tình hình tài chính và hiệu quả hoạt động của doanh nghiệp, theo dõi kết quả kinh doanh theo từng khu vực trong mạng lưới cũng như toàn doanh nghiệp theo từng tháng, đồng thời đo lường và so sánh hiệu suất kinh doanh của từng ASM. Từ đó, một dashboard theo dõi kết quả kinh doanh được xây dựng nhằm trực quan hóa các chỉ số quan trọng, hỗ trợ ban lãnh đạo theo dõi, đánh giá và ra quyết định quản lý hiệu quả hơn.
-## 📂 Giải pháp
+## 💡 Giải pháp
 Để đáp ứng nhu cầu theo dõi và đánh giá hiệu quả kinh doanh của ban lãnh đạo, một hệ thống dashboard được xây dựng nhằm trực quan hóa các chỉ số tài chính và hiệu quả hoạt động của doanh nghiệp dưới nhiều góc nhìn khác nhau. Hệ thống này giúp ban lãnh đạo có thể theo dõi tình hình kinh doanh ở cấp độ tổng thể, theo từng khu vực, cũng như đánh giá hiệu suất làm việc của các ASM.  
 
 ### Hệ thống bao gồm các dashboard sau:
@@ -30,7 +31,7 @@ Ban lãnh đạo công ty F68 Finance có nhu cầu theo dõi hiệu quả kinh 
 - **Bảng xếp hạng ASM**  
   Dashboard này trình bày bảng xếp hạng các ASM dựa trên các chỉ tiêu đánh giá hiệu quả công việc. Thông qua đó, ban lãnh đạo có thể theo dõi và so sánh hiệu suất làm việc giữa các ASM, hỗ trợ cho việc đánh giá, quản lý và phân bổ nguồn lực.
 
-## 🧠 Xác định dữ liệu đầu vào
+## 🔎 Xác định dữ liệu đầu vào
 Dựa trên các dashboard đã thiết kế, bước tiếp theo là xác định các nguồn dữ liệu đầu vào cần thiết để xây dựng các chỉ tiêu và báo cáo. Các dữ liệu này được thu thập từ nhiều đơn vị trong doanh nghiệp nhằm đảm bảo cung cấp đầy đủ thông tin phục vụ cho việc tính toán và trực quan hóa các chỉ số kinh doanh trên dashboard.  
 
 ### Cụ thể, các bảng dữ liệu đầu vào bao gồm:
@@ -50,7 +51,7 @@ Dựa trên các dashboard đã thiết kế, bước tiếp theo là xác đị
   **Đơn vị cung cấp:** Phòng PTKD  
   **Mục đích sử dụng:** Phục vụ cho dashboard *Bảng xếp hạng ASM*.
 
-## 📊Triển khai
+## ⚙️Triển khai
 
 Quá trình xử lý dữ liệu được thực hiện trên PostgreSQL thông qua công cụ DBeaver trước khi kết nối với Power BI. 
 Dữ liệu từ các bảng nguồn được tiếp nhận, chuẩn hóa và tổ chức lại thành các bảng dimension và fact phục vụ cho việc xây dựng dashboard.
@@ -96,8 +97,9 @@ Procedure này tổng hợp dữ liệu từ các bảng giao dịch và KPI the
 <kbd>
   <img src="img/rpt_asm_ranking_month_prc.png">
 </kbd>    
+<br><br>
 
-Kết quả của quá trình xử lý này là hai bảng dữ liệu chính:
+Kết quả của quá trình xử lý này là hai bảng dữ liệu chính:  
 
 - **fct_funding_month**: Lưu trữ giá trị các chỉ tiêu tài chính theo từng khu vực và từng tháng.
 
@@ -115,6 +117,7 @@ Kết quả của quá trình xử lý này là hai bảng dữ liệu chính:
 <kbd>
   <img src="img/kqkd.png">
 </kbd>   
+<br><br>  
 
 **Mục tiêu thiết kế**   
 - Hệ thống hàng (Chỉ tiêu tài chính): Tôi liệt kê đầy đủ các khoản mục từ Lợi nhuận trước thuế, các loại thu nhập (lãi vay, phí bảo hiểm...) đến các tầng chi phí (vốn, vận hành, thuế phí). Việc sắp xếp từ trên xuống dưới giúp người xem theo dõi được dòng chảy tài chính từ Doanh thu xuống đến Lợi nhuận cuối cùng.
@@ -124,6 +127,7 @@ Kết quả của quá trình xử lý này là hai bảng dữ liệu chính:
 <kbd>
   <img src="img/Tongquan_dashboard.png">
 </kbd>   
+<br><br>  
 
 **Mục tiêu thiết kế**
 - Hàng chỉ số trên cùng: Tôi đặt 4 con số quan trọng nhất (Lợi nhuận, Thu nhập, Dự phòng, Chi phí) ngay trên cửa sổ chính. Đây là 'bảng điều khiển' trung tâm, nhìn vào là biết tháng này mình làm ăn hiệu quả hay không nhờ các mũi tên so sánh với tháng trước."
@@ -150,10 +154,11 @@ Kết quả của quá trình xử lý này là hai bảng dữ liệu chính:
 <kbd>
   <img src="img/hientrangkv1_dashboard.png">
 </kbd> 
-
+<br><br>
 <kbd>
   <img src="img/hientrangkv2_dashboard.png">
 </kbd>  
+<br><br>  
 
 **Mục tiêu thiết kế**  
 - Cụm Thẻ KPI Khu vực (MTD): Tôi trình bày các chỉ số Khoản vay mới, Nợ xấu và Khách hàng mới ngay trên cùng để sếp có cái nhìn tổng quát về quy mô tăng trưởng và rủi ro của toàn hệ thống trong tháng.
@@ -180,14 +185,42 @@ Kết quả của quá trình xử lý này là hai bảng dữ liệu chính:
 <kbd>
   <img src="img/bangxephangasm_dashboard.png">
 </kbd>   
+<br><br>  
 
 **Mục tiêu thiết kế**  
 - Bảng xếp hạng ASM lũy kế: Tôi thiết kế trang này như một 'bảng vàng' thành tích của đội ngũ ASM trên toàn quốc. Ý đồ của tôi là minh bạch hóa toàn bộ dữ liệu hiệu suất của từng cá nhân để sếp có cái nhìn công bằng nhất về năng lực của đội ngũ quản lý.
 
+## 🎯 Kết quả đạt được
+### Công cụ
+#### Cơ sở dữ liệu
 
+- Nắm vững việc sử dụng **SQL** để truy vấn và xử lý dữ liệu.
+- Có kinh nghiệm xây dựng **stored procedure (PL/pgSQL)** trên **PostgreSQL**.
+- Sử dụng **DBeaver** để quản lý và thao tác với cơ sở dữ liệu.
+- Hiểu và tổ chức mô hình dữ liệu **Dim/Fact – Star Schema** phục vụ phân tích.
+- Triển khai cơ chế **backdate** để xử lý và cập nhật dữ liệu theo các kỳ báo cáo.
+- Áp dụng các kỹ thuật tối ưu như **index** và **partition** để cải thiện hiệu năng truy vấn.
 
+#### Power BI
 
+- Tiếp nhận và phân tích **ngữ cảnh kinh doanh** để xác định các chỉ số cần theo dõi.
+- Xác định và chuẩn bị **dữ liệu đầu vào** phục vụ cho việc xây dựng báo cáo.
+- Thiết kế và xây dựng **dashboard** trực quan trên Power BI.
+- Thiết kế **UI/UX** cho dashboard nhằm giúp người dùng dễ dàng theo dõi và phân tích dữ liệu.
 
+### Kiến thức nghiệp vụ
+
+- Hiểu được các nhóm chỉ số tài chính và kinh doanh trong hoạt động của doanh nghiệp tài chính như: thu nhập, chi phí, lợi nhuận,...
+- Làm quen với các chỉ số quản trị như MTD, YTD, MoM và các chỉ số liên quan đến khoản vay, khách hàng và nợ xấu.
+
+### Nắm được quy trình các bước của DA
+**Bước 1: Xác định đầu ra (Output)**    
+**Bước 2: Thu thập dữ liệu**  
+**Bước 3: Lưu trữ dữ liệu**   
+**Bước 4: Xử lý và chuẩn hóa dữ liệu**   
+**Bước 5: Tổng hợp dữ liệu**   
+**Bước 6: Trực quan hóa dữ liệu**   
+**Bước 7: Nhìn nhận insight và đề xuất giải pháp**
 
 
 
