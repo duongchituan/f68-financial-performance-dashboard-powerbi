@@ -65,6 +65,31 @@ Hệ thống sử dụng các bảng dữ liệu nguồn sau:
 
 ### 2. Xây dựng các bảng dữ liệu
 Từ các bảng dữ liệu nguồn, các bảng dữ liệu trung gian và bảng tổng hợp được xây dựng nhằm chuẩn hóa cấu trúc dữ liệu và phục vụ cho việc xây dựng báo cáo.   
-**dim_area**   
-Bảng lưu trữ thông tin về các khu vực trong hệ thống, được sử dụng để liên kết dữ liệu giữa các bảng theo từng khu vực.   
 
+- **dim_area:** Bảng lưu trữ thông tin về các khu vực trong hệ thống, được sử dụng để liên kết dữ liệu giữa các bảng theo từng khu vực.
+
+  <kbd>
+  <img src="dim_area.png">
+  </kbd>
+
+- **dim_funding_structure:** Bảng lưu trữ danh mục các chỉ tiêu tài chính trong báo cáo và cấu trúc phân cấp giữa các chỉ tiêu.
+  
+  <kbd>
+  <img src="dim_funding_structure.png">
+  </kbd>   
+
+Sau khi xây dựng các bảng dimension, dữ liệu từ ba bảng nguồn được kết hợp với các bảng dimension vừa tạo để tiến hành tổng hợp và xây dựng các bảng dữ liệu phục vụ báo cáo.
+Quá trình này được thực hiện thông qua stored procedure, cho phép xử lý và tổng hợp dữ liệu theo từng kỳ báo cáo, đồng thời hỗ trợ cơ chế **backdate** để có thể chạy lại dữ liệu cho các khoảng thời gian trong quá khứ khi cần thiết.
+
+Kết quả của quá trình xử lý này là hai bảng dữ liệu chính:
+
+- **fct_funding_month**: Lưu trữ giá trị các chỉ tiêu tài chính theo từng khu vực và từng tháng.
+
+<kbd>
+  <img src="fct_funding_month.png">
+</kbd>   
+
+- **fact_report_asm**: Lưu trữ các chỉ số đánh giá hiệu quả làm việc của từng ASM theo từng tháng.
+<kbd>
+  <img src="fact_report_asm.png">
+</kbd> 
