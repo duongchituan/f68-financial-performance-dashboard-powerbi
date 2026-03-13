@@ -1,6 +1,6 @@
 # 📊 Financial Performance Dashboard – F68 Finance (Power BI)
 ---
-Tác giả: Dương Chí Tuấn 
+Tác giả: Dương Chí Tuấn   
 Thời gian thực hiện: Tháng 2 2026  
 Công cụ sử dụng: Power BI
 ---
@@ -51,26 +51,20 @@ Dựa trên các dashboard đã thiết kế, bước tiếp theo là xác đị
   **Mục đích sử dụng:** Phục vụ cho dashboard *Bảng xếp hạng ASM*.
 
 ## 📊Triển khai
-### Xây dựng các bảng dữ liệu
-Từ các bảng dữ liệu đầu vào, quá trình xử lý dữ liệu được thực hiện nhằm chuẩn hóa cấu trúc và xây dựng các bảng dữ liệu phục vụ cho việc xây dựng dashboard.
 
-#### Các bảng dimension
+Quá trình xử lý dữ liệu được thực hiện trên PostgreSQL thông qua công cụ DBeaver trước khi kết nối với Power BI. 
+Dữ liệu từ các bảng nguồn được tiếp nhận, chuẩn hóa và tổ chức lại thành các bảng dimension và fact phục vụ cho việc xây dựng dashboard.
 
-- **dim_area**  
-  Bảng mô tả thông tin về các khu vực trong hệ thống, được sử dụng để chuẩn hóa và liên kết dữ liệu giữa các bảng fact theo khu vực.
+### 1. Nguồn dữ liệu
 
-- **dim_funding_structure**  
-  Bảng lưu trữ danh mục các chỉ tiêu tài chính trong báo cáo và cấu trúc phân cấp giữa các chỉ tiêu.
+Hệ thống sử dụng các bảng dữ liệu nguồn sau:
 
-#### Các bảng fact
+- **fact_kpi_month**: Lưu trữ thông tin hồ sơ và các chỉ tiêu kinh doanh theo tháng.  
+- **fact_txn_month**: Lưu trữ thông tin giao dịch của các tài khoản GL, phản ánh các khoản thu nhập và chi phí.  
+- **fact_kpi_asm**: Lưu trữ kết quả kinh doanh và các chỉ số đánh giá hiệu quả làm việc của các ASM.
 
-- **fct_funding_month**  
-  Lưu trữ giá trị của các chỉ tiêu tài chính theo từng khu vực và từng tháng.
-
-- **fact_report_asm**  
-  Lưu trữ giá trị các chỉ số đánh giá hiệu quả làm việc của từng ASM theo từng tháng.
-
-### Các insight chính và trực quan hóa dữ liệu
-#### Báo cáo KQKD
-
+### 2. Xây dựng các bảng dữ liệu
+Từ các bảng dữ liệu nguồn, các bảng dữ liệu trung gian và bảng tổng hợp được xây dựng nhằm chuẩn hóa cấu trúc dữ liệu và phục vụ cho việc xây dựng báo cáo.   
+**dim_area**   
+Bảng lưu trữ thông tin về các khu vực trong hệ thống, được sử dụng để liên kết dữ liệu giữa các bảng theo từng khu vực.   
 
